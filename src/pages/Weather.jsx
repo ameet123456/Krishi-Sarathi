@@ -7,7 +7,7 @@ function Weather() {
   const [location, setLocation] = useState('Binka');
   const [searchLocation, setSearchLocation] = useState('');
 
-  const API_KEY = 'a018729034a84f29adf61637252809';
+const API_KEY = process.env.REACT_APP_WEATHER_API;
 
   // Fetch current weather
   const fetchWeatherData = async (loc) => {

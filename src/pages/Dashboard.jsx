@@ -10,8 +10,8 @@ import {
   Wheat ,
   MessageCircle
 } from 'lucide-react';
+const API_KEY = process.env.REACT_APP_WEATHER_API;
 
-const API_KEY = 'a018729034a84f29adf61637252809';
 
 const Dashboard = () => {
   const [weatherData, setWeatherData] = useState(null);

@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Bell, User } from "lucide-react";
+import { Bell, User, Menu, X } from "lucide-react";
 
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleScroll = (section) => {
     if (location.pathname !== "/") {
@@ -16,6 +17,12 @@ function Navbar() {
     } else {
       scroll.scrollTo(document.getElementById(section).offsetTop, { smooth: true });
     }
+    // Close mobile menu after navigation
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -26,7 +33,7 @@ function Navbar() {
           Krishi Sarathi
         </h1>
 
-        {/* Links */}
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
           {["home", "services", "support", "about"].map((section) => (
             <button
@@ -39,8 +46,8 @@ function Navbar() {
           ))}
         </div>
 
-        {/* Actions */}
-        <div className="flex items-center space-x-3">
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center space-x-3">
           <button className="p-2 text-gray-600 hover:text-green-600 hover:bg-gray-50 rounded-full transition-colors">
             <Bell size={20} />
           </button>
@@ -48,22 +55,40 @@ function Navbar() {
             <User size={16} className="text-white" />
           </button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center space-x-3">
+          <button className="p-2 text-gray-600 hover:text-green-600 hover:bg-gray-50 rounded-full transition-colors">
+            <Bell size={20} />
+          </button>
+          <button className="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">
+            <User size={16} className="text-white" />
+          </button>
+          <button
+            onClick={toggleMobileMenu}
+            className="p-2 text-gray-600 hover:text-green-600 hover:bg-gray-50 rounded-full transition-colors"
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
-      <div className="md:hidden mt-4 pt-4 border-t border-gray-200">
-        <div className="flex flex-col space-y-2">
-          {["home", "services", "support", "about"].map((section) => (
-            <button
-              key={section}
-              onClick={() => handleScroll(section)}
-              className="text-gray-700 hover:text-green-600 font-medium py-2"
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </button>
-          ))}
+      {isMobileMenuOpen && (
+        <div className="md:hidden mt-4 pt-4 border-t border-gray-200">
+          <div className="flex flex-col space-y-2">
+            {["home", "services", "support", "about"].map((section) => (
+              <button
+                key={section}
+                onClick={() => handleScroll(section)}
+                className="text-gray-700 hover:text-green-600 font-medium py-2 text-left"
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }
