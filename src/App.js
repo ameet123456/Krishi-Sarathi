@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import Dashboard from './pages/Dashboard';
+import Weather from './pages/Weather';
+import Navbar from './components/Navbar';
+import Sarathi from './pages/Sarathi';
+import Market_price from './pages/Market_price';
+import Disease_detection from './pages/Disease_detection';
+import Crop_advice from './pages/Crop_advice';
+import Soil_test from './pages/Soil_test';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Router>
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/sarathi" element={<Sarathi />} />
+        <Route path="/market-price" element={<Market_price />} />
+        <Route path="/disease-detection" element={<Disease_detection />} />
+        <Route path="/crop-advice" element={<Crop_advice />} />
+        <Route path="/soil-test" element={<Soil_test />} />
+      </Routes>
+      <Footer />
 
+    </div>
+    </Router>
+  )
+}
 export default App;
