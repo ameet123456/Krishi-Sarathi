@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import ScrollToTop from './components/ScrollToTop';
 import Dashboard from './pages/Dashboard';
 import Weather from './pages/Weather';
 import Navbar from './components/Navbar';
@@ -15,6 +16,7 @@ function App() {
   return (
     <Router>
     <div>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
