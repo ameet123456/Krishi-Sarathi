@@ -188,7 +188,7 @@ const API_KEY = process.env.REACT_APP_WEATHER_API;
               {forecastData.map((day, index) => (
                 <div key={index} className="bg-gray-50 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <div className="font-medium text-gray-800">{day.date}</div>
+                    <div className="font-medium text-gray-800">{getDayName(day.date)}</div>
                     <div className="text-gray-700">{day.day.maxtemp_c}° / {day.day.mintemp_c}°</div>
                   </div>
                   <div className="flex items-center justify-between">
