@@ -9,6 +9,7 @@ import Disease_detection from './pages/Disease_detection';
 import Crop_advice from './pages/Crop_advice';
 import Soil_test from './pages/Soil_test';
 import Footer from './components/Footer';
+import Floating_button from './components/Floating_button';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/crop-advice" element={<Crop_advice />} />
         <Route path="/soil-test" element={<Soil_test />} />
       </Routes>
+      <Floating_button />
       <Footer />
 
     </div>
